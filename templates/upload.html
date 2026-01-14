@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Python File - Pro Python IDE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='themes.css') }}">
+</head>
+<body class="dark">
+<div class="container">
+    <header>
+        <h1>Upload Python File</h1>
+        <p>Select a Python file to upload and edit in the IDE.</p>
+    </header>
+
+    <form method="POST" enctype="multipart/form-data">
+        <label for="upload_file_input">Choose a .py file:</label>
+        <input type="file" name="upload_file_input" accept=".py" required>
+
+        <div class="buttons">
+            <button type="submit" name="upload_file" class="main-button">Upload</button>
+            <a href="/" class="main-button" style="text-decoration:none;text-align:center;display:inline-block;">Back to IDE</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
