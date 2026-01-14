@@ -1,0 +1,25 @@
+body.light {
+    background: #f5f5f5;
+    color: #000;
+}
+
+body.light textarea {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+body.light input[type=text], body.light input[type=file] {
+    background: #fff;
+    color: #000;
+    border: 1px solid #ccc;
+}
+
+body.light .main-button {
+    background: #00ccff;
+    color: #000;
+}
+
+body.light .main-button:hover {
+    background: #0099cc;
+}

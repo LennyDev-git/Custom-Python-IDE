@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pro Python IDE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='themes.css') }}">
+    <script>
+        // Auto-pairs like VS Code
+        function setupAutoPairs(textarea) {
+            const pairs = {'(':')', '{':'}', '[':']', '"':'"', "'":"'"};
+            textarea.addEventListener('keydown', function(e){
+                if(Object.keys(pairs).includes(e.key)){
+                    e.preventDefault();
+                    const start = textarea.selectionStart;
+                    const end = textarea.selectionEnd;
+                    const val = textarea.value;
+                    const close = pairs[e.key];
+                    textarea.value = val.substring(0,start) + e.key + close + val.substring(end);
+                    textarea.selectionStart = textarea.selectionEnd = start + 1;
+                }
+            });
+        }
+        window.onload = function() {
+            setupAutoPairs(document.getElementById("editor"));
+        };
+    </script>
+</head>
+<body class="dark">
+<div class="container">
+    <header>
+        <h1>Pro Python IDE</h1>
+        <p>Write, run, upload, and download Python code in a modern interface.</p>
+    </header>
+
+    <form method="POST" enctype="multipart/form-data" class="editor-form">
+        <div class="input-row">
+            <div class="input-group">
+                <label for="filename">File Name:</label>
+                <input type="text" name="filename" placeholder="script.py">
+            </div>
+            <div class="input-group">
+                <label for="upload_file_input">Upload File:</label>
+                <input type="file" name="upload_file_input">
+                <button type="submit" name="upload_file" class="small-button">Upload</button>
+            </div>
+        </div>
+
+        <textarea id="editor" name="code" placeholder="Write your Python code here...">{{ code }}</textarea>
+
+        <div class="buttons">
+            <button type="submit" name="run_code" class="main-button">Run Code</button>
+            <button type="submit" name="download_file" class="main-button">Download File</button>
+            <button type="submit" name="download_output" class="main-button">Download Output</button>
+            <button type="submit" name="clear_editor" class="main-button">Clear Editor</button>
+        </div>
+    </form>
+
+    <section class="output-section">
+        <h2>Output:</h2>
+        <pre>{{ output }}</pre>
+    </section>
+
+    <section class="history-section">
+        <h2>History:</h2>
+        <pre>{{ history }}</pre>
+    </section>
+</div>
+</body>
+</html>
+
+
+
